@@ -1,0 +1,11 @@
+{
+    "name": "cept73/dgb-rate-to-file",
+    "description": "Get DGB/USDT from Binance and save it to the file",
+    "require": {
+        "jaggedsoft/php-binance-api": "^0.5.26",
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    }
+}
