@@ -4,14 +4,14 @@ require 'vendor/autoload.php';
 
 function isNeedReplaceRate($fileName): bool
 {
-    $now = time();
     if (!file_exists($fileName)) {
         return true;
     }
 
-    $lastDate = filectime($fileName);
-    $diff = $now - $lastDate;
-    $minutes = round($diff / 60);
+    $lastDate   = filectime($fileName);
+    $diff       = time() - $lastDate;
+    $minutes    = round($diff / 60);
+
     return $minutes > 2;
 }
 
