@@ -1,8 +1,6 @@
 <?php /** @noinspection SpellCheckingInspection */
 
 require 'vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
 function isNeedReplaceRate($fileName): bool
 {
@@ -26,17 +24,20 @@ function replaceRateFromBinanceRate($api, $ticker, $fileName): bool
         $price = null;
     }
 
-    $fp = fopen($fileName, 'wb');
     if ($price) {
+        $fp = fopen($fileName, 'wb');
         fwrite($fp, $price);
+        fclose($fp);
+        return true;
     }
-    fclose($fp);
 
-    return (bool) $price;
+    return false;
 }
 
 function main()
 {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
     $fileName   = $_ENV['FILE_NAME'];
     $apiKey     = $_ENV['API_KEY'];
     $apiSecret  = $_ENV['API_SECRET'];
